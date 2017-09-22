@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+	{% block body %}
+	<div class="container">
+		<div class="col-md-8">
+			<h1>Home</h1>
+			<form method="post">
+				{% csrf_token %}
+				{{ form.errors}}
+				<br>
+				{{ form.post }}
+				<br>
+				<button class="btn btn-info">Submit</button>
+			</form>
+			{{ text }}
+
+			{% for post in posts %}
+				<h1>{{ post.post }}</h1>
+				<p>{{ post.date }}</p>
+				<p>Posted by: {{ post.user.get_full_name }}</p>
+			{% endfor %}
+		</div>
+		<br><br><br>
+
+		<div class="col-md-4">
+			<h2>Other People</h2>
+			{% for user in users %}
+				<a href="{% url 'accounts:profile_with_pk' pk=user.pk %}">
+					<h3>{{ user.username }} 
+						<span>
+							<a class="btn btn-info" href="{% url 'home:change_friend' operation='add' pk=user.pk %}">Add friend</a>
+						</span>
+					</h3>	
+				</a>
+			{% endfor %}
+
+			<h2>Friends</h2>
+			{% if friends.count > 0 %}
+				{% for user in friends %}
+					<a href="{% url 'accounts:profile_with_pk' pk=user.pk %}">
+						<h3>{{ user.username }} 
+							<span>
+								<a class="btn btn-danger" href="{% url 'home:change_friend' operation='remove' pk=user.pk %}">Remove friend</a>
+							</span>
+						</h3>	
+					</a>
+				{% endfor %}
+			{% else %}
+				<h3>No Friends Yet</h3>
+			{% endif %}
+		</div>
+	</div>
+	{% endblock %}

@@ -7,10 +7,20 @@
 {% block body %}
 	<div class="container">
 		<h1>Profile</h1>
+
+		<div class="container">
+			{% if user.userprofile.image %}
+				<img src="{{ user.userprofile.image.url }}" class="img-rounded img-responsive" width="240">
+			{% endif %}
+		</div>
+		<br>
 		<p>User: {{ user }} </p>
 		<p>First Name: {{ user.first_name }} </p>
 		<p>Last Name: {{ user.last_name }} </p>
 		<p>Email: {{ user.email }}</p>
-		<a href="{% url 'edit_profile' %}" class="btn btn-info">Edit Profile</a>
+		<p>City: {{ user.userprofile.city }}</p>
+		<p>Phone: {{ user.userprofile.phone }}</p>
+		<p>Website: {{ user.userprofile.website }}</p>
+		<a href="{% url 'accounts:edit_profile' %}" class="btn btn-info">Edit Profile</a>
 	</div>
 {% endblock %}
