@@ -1,4 +1,4 @@
-from tutorial.settings import *
+from tutorial.setting import *
 
 # Overide the base.py setting here
 
@@ -12,7 +12,7 @@ ALLOWED_HOSTS = ['*']
 DEBUG = False
 
 try:
-	from tutorials.settings.local import *
+	from tutorial.settings.local import *
 except:
 	pass
 

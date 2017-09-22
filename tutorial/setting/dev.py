@@ -1,4 +1,4 @@
-from tutorial.settings.base import *
+from tutorial.setting.base import *
 
 # Overide the base.py setting here
 
