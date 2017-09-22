@@ -33,4 +33,4 @@ class Friend(models.Model):
 		friend.users.remove(new_friend)
 
 	def __str__(self):
-		return self.current_user.username
+		return self.current_user.username + " Friend's List"
